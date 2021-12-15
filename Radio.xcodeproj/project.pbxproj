@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		768F8A7523418679C2902138 /* Pods_Radio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 937689B763EE9EE66ACDACEA /* Pods_Radio.framework */; };
+		B584140F276AA96200235259 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B584140E276AA96200235259 /* MenuController.swift */; };
+		B5841412276AAA5900235259 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5841411276AAA5900235259 /* BaseViewController.swift */; };
+		B5841414276AAB6600235259 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5841413276AAB6600235259 /* MainController.swift */; };
+		B587C3FB27680317000D2B75 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C3FA27680317000D2B75 /* Builder.swift */; };
+		B587C3FD27680372000D2B75 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C3FC27680372000D2B75 /* Router.swift */; };
+		B587C40027680435000D2B75 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C3FF27680435000D2B75 /* NetworkService.swift */; };
+		B587C4042768051A000D2B75 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C4032768051A000D2B75 /* LoginModel.swift */; };
+		B587C40627680541000D2B75 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C40527680541000D2B75 /* List.swift */; };
 		B5CEF6BC27661CF7002C6EB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEF6BB27661CF7002C6EB7 /* AppDelegate.swift */; };
 		B5CEF6BE27661CF7002C6EB7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEF6BD27661CF7002C6EB7 /* SceneDelegate.swift */; };
 		B5CEF6C027661CF7002C6EB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEF6BF27661CF7002C6EB7 /* ViewController.swift */; };
@@ -16,6 +25,9 @@
 		B5CEF6D327661CFC002C6EB7 /* RadioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEF6D227661CFC002C6EB7 /* RadioTests.swift */; };
 		B5CEF6DD27661CFC002C6EB7 /* RadioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEF6DC27661CFC002C6EB7 /* RadioUITests.swift */; };
 		B5CEF6DF27661CFC002C6EB7 /* RadioUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEF6DE27661CFC002C6EB7 /* RadioUITestsLaunchTests.swift */; };
+		B5DBF32427681EE600AB06BD /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DBF32327681EE600AB06BD /* NSObject+Extension.swift */; };
+		B5DBF32727681EFC00AB06BD /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DBF32527681EFC00AB06BD /* UIColor+Extension.swift */; };
+		B5DBF32827681EFC00AB06BD /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DBF32627681EFC00AB06BD /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +48,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FA99BDD349B373CC2329DB0 /* Pods-Radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Radio.debug.xcconfig"; path = "Target Support Files/Pods-Radio/Pods-Radio.debug.xcconfig"; sourceTree = "<group>"; };
+		937689B763EE9EE66ACDACEA /* Pods_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B584140E276AA96200235259 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		B5841411276AAA5900235259 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		B5841413276AAB6600235259 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		B587C3FA27680317000D2B75 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		B587C3FC27680372000D2B75 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		B587C3FF27680435000D2B75 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		B587C4032768051A000D2B75 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		B587C40527680541000D2B75 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		B5CEF6B827661CF7002C6EB7 /* Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Radio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CEF6BB27661CF7002C6EB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5CEF6BD27661CF7002C6EB7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +71,10 @@
 		B5CEF6D827661CFC002C6EB7 /* RadioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RadioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CEF6DC27661CFC002C6EB7 /* RadioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioUITests.swift; sourceTree = "<group>"; };
 		B5CEF6DE27661CFC002C6EB7 /* RadioUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B5DBF32327681EE600AB06BD /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
+		B5DBF32527681EFC00AB06BD /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		B5DBF32627681EFC00AB06BD /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		C28AD8FDB86BECB6E0593703 /* Pods-Radio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Radio.release.xcconfig"; path = "Target Support Files/Pods-Radio/Pods-Radio.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				768F8A7523418679C2902138 /* Pods_Radio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +103,107 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13113605573B50FBF5EEF4AC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0FA99BDD349B373CC2329DB0 /* Pods-Radio.debug.xcconfig */,
+				C28AD8FDB86BECB6E0593703 /* Pods-Radio.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6F03042214526660DD1D29BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				937689B763EE9EE66ACDACEA /* Pods_Radio.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B584140A276AA8EE00235259 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				B584140B276AA8FD00235259 /* Presenter */,
+				B584140D276AA93F00235259 /* View */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		B584140B276AA8FD00235259 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		B584140D276AA93F00235259 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B584140E276AA96200235259 /* MenuController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5841410276AA9AD00235259 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B5DBF32327681EE600AB06BD /* NSObject+Extension.swift */,
+				B5DBF32527681EFC00AB06BD /* UIColor+Extension.swift */,
+				B5DBF32627681EFC00AB06BD /* UIView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B5841415276AAFAF00235259 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		B5841416276AAFBB00235259 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5841417276AAFD000235259 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B587C3F9276802EE000D2B75 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B5841417276AAFD000235259 /* Model */,
+				B5841415276AAFAF00235259 /* Presenter */,
+				B5841416276AAFBB00235259 /* View */,
+				B5841413276AAB6600235259 /* MainController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B587C3FE27680414000D2B75 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				B587C402276804B1000D2B75 /* Model */,
+				B587C3FF27680435000D2B75 /* NetworkService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		B587C402276804B1000D2B75 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B587C4032768051A000D2B75 /* LoginModel.swift */,
+				B587C40527680541000D2B75 /* List.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B5CEF6AF27661CF7002C6EB7 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +211,8 @@
 				B5CEF6D127661CFC002C6EB7 /* RadioTests */,
 				B5CEF6DB27661CFC002C6EB7 /* RadioUITests */,
 				B5CEF6B927661CF7002C6EB7 /* Products */,
+				13113605573B50FBF5EEF4AC /* Pods */,
+				6F03042214526660DD1D29BE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,7 +231,14 @@
 			children = (
 				B5CEF6BB27661CF7002C6EB7 /* AppDelegate.swift */,
 				B5CEF6BD27661CF7002C6EB7 /* SceneDelegate.swift */,
+				B5841411276AAA5900235259 /* BaseViewController.swift */,
+				B587C3FE27680414000D2B75 /* API */,
+				B587C3FA27680317000D2B75 /* Builder.swift */,
+				B587C3FC27680372000D2B75 /* Router.swift */,
+				B584140A276AA8EE00235259 /* Menu */,
+				B587C3F9276802EE000D2B75 /* Main */,
 				B5CEF6BF27661CF7002C6EB7 /* ViewController.swift */,
+				B5841410276AA9AD00235259 /* Extensions */,
 				B5CEF6C127661CF7002C6EB7 /* Main.storyboard */,
 				B5CEF6C427661CFB002C6EB7 /* Assets.xcassets */,
 				B5CEF6C627661CFB002C6EB7 /* LaunchScreen.storyboard */,
@@ -134,9 +271,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5CEF6E227661CFC002C6EB7 /* Build configuration list for PBXNativeTarget "Radio" */;
 			buildPhases = (
+				46AC13A1F053C883689AD8D0 /* [CP] Check Pods Manifest.lock */,
 				B5CEF6B427661CF7002C6EB7 /* Sources */,
 				B5CEF6B527661CF7002C6EB7 /* Frameworks */,
 				B5CEF6B627661CF7002C6EB7 /* Resources */,
+				6DB75B8A1FA1E7A5C5450208 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,14 +392,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		46AC13A1F053C883689AD8D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Radio-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6DB75B8A1FA1E7A5C5450208 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Radio/Pods-Radio-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Radio/Pods-Radio-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Radio/Pods-Radio-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B5CEF6B427661CF7002C6EB7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5841412276AAA5900235259 /* BaseViewController.swift in Sources */,
+				B5DBF32827681EFC00AB06BD /* UIView+Extension.swift in Sources */,
 				B5CEF6C027661CF7002C6EB7 /* ViewController.swift in Sources */,
+				B587C40627680541000D2B75 /* List.swift in Sources */,
+				B5DBF32427681EE600AB06BD /* NSObject+Extension.swift in Sources */,
+				B584140F276AA96200235259 /* MenuController.swift in Sources */,
+				B587C4042768051A000D2B75 /* LoginModel.swift in Sources */,
 				B5CEF6BC27661CF7002C6EB7 /* AppDelegate.swift in Sources */,
+				B5841414276AAB6600235259 /* MainController.swift in Sources */,
+				B587C3FD27680372000D2B75 /* Router.swift in Sources */,
 				B5CEF6BE27661CF7002C6EB7 /* SceneDelegate.swift in Sources */,
+				B587C40027680435000D2B75 /* NetworkService.swift in Sources */,
+				B587C3FB27680317000D2B75 /* Builder.swift in Sources */,
+				B5DBF32727681EFC00AB06BD /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +626,7 @@
 		};
 		B5CEF6E327661CFC002C6EB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FA99BDD349B373CC2329DB0 /* Pods-Radio.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -446,6 +639,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,6 +655,7 @@
 		};
 		B5CEF6E427661CFC002C6EB7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C28AD8FDB86BECB6E0593703 /* Pods-Radio.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -473,6 +668,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
