@@ -11,6 +11,7 @@
 		B584140F276AA96200235259 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B584140E276AA96200235259 /* MenuController.swift */; };
 		B5841412276AAA5900235259 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5841411276AAA5900235259 /* BaseViewController.swift */; };
 		B5841414276AAB6600235259 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5841413276AAB6600235259 /* MainController.swift */; };
+		B584141A276ABC7900235259 /* StationsList.html in Resources */ = {isa = PBXBuildFile; fileRef = B5841419276ABC7900235259 /* StationsList.html */; };
 		B587C3FB27680317000D2B75 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C3FA27680317000D2B75 /* Builder.swift */; };
 		B587C3FD27680372000D2B75 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C3FC27680372000D2B75 /* Router.swift */; };
 		B587C40027680435000D2B75 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C3FF27680435000D2B75 /* NetworkService.swift */; };
@@ -53,6 +54,7 @@
 		B584140E276AA96200235259 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		B5841411276AAA5900235259 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B5841413276AAB6600235259 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		B5841419276ABC7900235259 /* StationsList.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = StationsList.html; sourceTree = "<group>"; };
 		B587C3FA27680317000D2B75 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		B587C3FC27680372000D2B75 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		B587C3FF27680435000D2B75 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -175,6 +177,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B5841418276ABC5500235259 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B5841419276ABC7900235259 /* StationsList.html */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		B587C3F9276802EE000D2B75 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +239,7 @@
 		B5CEF6BA27661CF7002C6EB7 /* Radio */ = {
 			isa = PBXGroup;
 			children = (
+				B5841418276ABC5500235259 /* Data */,
 				B5CEF6BB27661CF7002C6EB7 /* AppDelegate.swift */,
 				B5CEF6BD27661CF7002C6EB7 /* SceneDelegate.swift */,
 				B5841411276AAA5900235259 /* BaseViewController.swift */,
@@ -371,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5CEF6C827661CFB002C6EB7 /* LaunchScreen.storyboard in Resources */,
+				B584141A276ABC7900235259 /* StationsList.html in Resources */,
 				B5CEF6C527661CFB002C6EB7 /* Assets.xcassets in Resources */,
 				B5CEF6C327661CF7002C6EB7 /* Main.storyboard in Resources */,
 			);

@@ -13,6 +13,8 @@ target 'Radio' do
  # pod 'NVActivityIndicatorView'
   pod 'TinyConstraints', '~> 4.0'
   pod 'SideMenuSwift', '~> 2.0.9'
+  pod 'SwiftSoup', '~> 2.3'
+
 
  # pod 'Google-Mobile-Ads-SDK'
 end
