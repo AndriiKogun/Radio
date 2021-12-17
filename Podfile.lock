@@ -1,11 +1,14 @@
 PODS:
   - Alamofire (5.4.4)
+  - AlamofireImage (4.2.0):
+    - Alamofire (~> 5.4)
   - SideMenuSwift (2.0.9)
   - SwiftSoup (2.3.4)
   - TinyConstraints (4.0.2)
 
 DEPENDENCIES:
   - Alamofire (~> 5.4)
+  - AlamofireImage (~> 4.2)
   - SideMenuSwift (~> 2.0.9)
   - SwiftSoup (~> 2.3)
   - TinyConstraints (~> 4.0)
@@ -13,16 +16,18 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AlamofireImage
     - SideMenuSwift
     - SwiftSoup
     - TinyConstraints
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  AlamofireImage: 34a2d90b0e5fe6a5605f85ae4b7b01e784c60192
   SideMenuSwift: 39f1922e225da4aaa8b16591037a929defe960c9
   SwiftSoup: d5b9645498f8d09fdc5f96b9c70b5858099fd411
   TinyConstraints: 7b7ccc0c485bb3bb47082138ff28bc33cd49897f
 
-PODFILE CHECKSUM: a84eda05c51d77f01636c6f74723a6602cd47a8b
+PODFILE CHECKSUM: df75df5d5c1d4b30f9a03fd89a796ef812b1dea2
 
 COCOAPODS: 1.11.2

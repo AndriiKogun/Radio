@@ -11,7 +11,7 @@ import Alamofire
 
 protocol NetworkServiceProtocol {
     func login(login: String, password: String, handler: @escaping (Result <LoginModel, String>) -> Void)
-    func loadList(groupID: Int, handler: @escaping (Result <List, String>) -> Void)
+    func loadList(groupID: Int, handler: @escaping (Result <Station, String>) -> Void)
 }
 
 enum Result<T, U> {
@@ -48,7 +48,7 @@ class NetworkService: NetworkServiceProtocol {
 //        }
     }
     
-    func loadList(groupID: Int, handler: @escaping (Result <List, String>) -> Void) {
+    func loadList(groupID: Int, handler: @escaping (Result <Station, String>) -> Void) {
 //        let jsonString = "json={\("group_id=\(groupID)")}"
 //
 //        let request = getRequest(path: "restProtected/getUserDeviceListDirContent",

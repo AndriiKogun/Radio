@@ -9,6 +9,8 @@ target 'Radio' do
  # pod 'Firebase/Crashlytics'
  # pod 'Firebase/Messaging'
 
+  pod 'AlamofireImage', '~> 4.2'
+
   pod 'Alamofire', '~> 5.4'
  # pod 'NVActivityIndicatorView'
   pod 'TinyConstraints', '~> 4.0'

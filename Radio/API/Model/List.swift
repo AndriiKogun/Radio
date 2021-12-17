@@ -7,19 +7,17 @@
 
 import Foundation
 
-struct List: Decodable {
-    let devices: [Devices]
-
+struct Station: Decodable {
+    var id: String
+    var imageUrl: String
+    var name: String
+    var stream: String
+    
     enum CodingKeys : String, CodingKey {
-        case devices = "user_devices"
+        case id = "radioid"
+        case imageUrl = "radioimg"
+        case name = "radioname"
+        case stream
     }
 }
 
-
-struct Devices: Decodable {
-    let name: String
-
-    enum CodingKeys : String, CodingKey {
-        case name = "device_name"
-    }
-}
