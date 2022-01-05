@@ -17,7 +17,11 @@ class Builder: BuilderProtocol {
     let networkService = NetworkService()
 
     func createMainModule(router: RouterProtocol) -> UIViewController {
-        let vc = SideMenuController(contentViewController: MainController(),
+        let contentViewController = MainController()
+        let presenter = MainPresenter(view: contentViewController, networkService: networkService, router: router)
+        contentViewController.presenter = presenter
+        
+        let vc = SideMenuController(contentViewController: contentViewController,
                                     menuViewController: MenuController())
 
         

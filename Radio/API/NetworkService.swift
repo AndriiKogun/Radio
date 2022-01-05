@@ -12,6 +12,11 @@ import Alamofire
 protocol NetworkServiceProtocol {
     func login(login: String, password: String, handler: @escaping (Result <LoginModel, String>) -> Void)
     func loadList(groupID: Int, handler: @escaping (Result <Station, String>) -> Void)
+    
+    func loadStations(genre: GenreType, page: Int, completion: @escaping (Result <[Station], String> ) -> Void)
+    func getCurrentTrack(stationID: String, completion: @escaping (Result <Track, String>) -> Void)
+
+
 }
 
 enum Result<T, U> {
@@ -20,12 +25,75 @@ enum Result<T, U> {
     case noConnection
 }
 
-class NetworkService: NetworkServiceProtocol {
+enum GenreType: Int, CaseIterable {
+    case pop = 0
+    case rock
+    case oldies
+    case style
+    case dance
+    case lounge
+    case jazz
     
-    private let baseUrl = "https://api.partizancloud.com/"
-    private let clientKey = "42f6c432fdb71b1ed20874b181352a14"
+    var name: String {
+        switch self {
+        case .pop: return "pop"
+        case .rock: return "rock"
+        case .oldies: return "oldies"
+        case .style: return "style"
+        case .dance: return "dance"
+        case .lounge: return "lounge"
+        case .jazz: return "jazz"
+        }
+    }
+}
+
+class NetworkService: NetworkServiceProtocol {
+        
+    private let baseUrl = "https://onlineradiobox.com"
+    private let country = "ua"
     
     private let serverError = "Щось пішло не так"
+        
+    func loadStations(genre: GenreType, page: Int, completion: @escaping (Result <[Station], String>) -> Void) {
+        let urlString = "\(baseUrl)/\(country)/genre/\(genre.name)-/?cs=ua.hop&p=\(page)&ajax=1&tzLoc=Europe/Kiev"
+        
+        AF.request(urlString,
+                   method: .get,
+                   encoding: JSONEncoding.default).responseJSON { [weak self] response in
+            
+            guard
+                let self = self,
+                let data = response.data,
+                let model = try? JSONDecoder().decode(DataModel.self, from: data)
+            else {
+                return completion(.error(self?.serverError ?? ""))
+            }
+            
+            let stations = HTMLParser.getStetions(html: model.data)
+            
+//            self.saveCookies(response: response.response)
+            completion(.success(stations))
+        }
+    }
+    
+    func getCurrentTrack(stationID: String, completion: @escaping (Result <Track, String>) -> Void) {
+        let urlString = "https://scraper2.onlineradiobox.com/\(stationID)?l=0"
+        
+        AF.request(urlString,
+                   method: .get,
+                   encoding: JSONEncoding.default).responseJSON { [weak self] response in
+            
+            guard
+                let self = self,
+                let data = response.data,
+                let track = try? JSONDecoder().decode(Track.self, from: data)
+            else {
+                return completion(.error(self?.serverError ?? ""))
+            }
+                        
+            completion(.success(track))
+        }
+    }
     
     func login(login: String, password: String, handler: @escaping (Result <LoginModel, String>) -> Void) {
 //        let jsonString = "json={\("client_key=\(clientKey),email=\(login),password=\(password)")}"
@@ -47,6 +115,9 @@ class NetworkService: NetworkServiceProtocol {
 //            handler(.success(model))
 //        }
     }
+    
+    
+    
     
     func loadList(groupID: Int, handler: @escaping (Result <Station, String>) -> Void) {
 //        let jsonString = "json={\("group_id=\(groupID)")}"
