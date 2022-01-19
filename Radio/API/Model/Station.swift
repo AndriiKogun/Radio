@@ -7,16 +7,46 @@
 
 import Foundation
 
-struct Station: Decodable {
+struct StationsModel {
+    var stations = [Station]()
+//    var genre = GenreType.
+    
+    
+    var pagesCount: Int
+}
+
+struct Station: Codable {
     var id: String
-    var imageUrl: String
+    var radioimg: String
     var name: String
     var stream: String
     
+    var currentTrack: Track?
+    
+    var imageUrl: String {
+        return  "https:\(radioimg)"
+    }
+    
+    var title: String {
+        if let track = currentTrack {
+            return track.trackName
+        } else {
+            return name
+        }
+    }
+    
+    var subtitle: String {
+        if let track = currentTrack {
+            return track.artistName
+        } else {
+            return ""
+        }
+    }
+
     enum CodingKeys : String, CodingKey {
         case id = "radioid"
-        case imageUrl = "radioimg"
         case name = "radioname"
+        case radioimg
         case stream
     }
 }

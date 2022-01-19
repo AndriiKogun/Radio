@@ -11,14 +11,24 @@ class StationCell: UICollectionViewCell {
     
     var stationImageView: UIImageView = {
         let view = UIImageView()
+        view.layer.cornerRadius = 4
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    private var heartButton: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage(named: "heart_circle_fill_selected"), for: .selected)
+        view.setImage(UIImage(named: "heart_circle_fill_unselected"), for: .normal)
+        view.addTarget(self, action: #selector(heartAction(_:)), for: .touchUpInside)
         return view
     }()
     
     var titleLabel: UILabel = {
         let view = UILabel()
         view.numberOfLines = 3
-        view.font = .systemFont(ofSize: 14)
-        view.textColor = .black
+        view.font = .systemFont(ofSize: 12)
+        view.textColor = .white
         view.textAlignment = .center
         return view
     }()
@@ -48,17 +58,34 @@ class StationCell: UICollectionViewCell {
 //        }
 //    }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        stationImageView.image = nil
+    }
+    
     private func setupLayout() {
         contentView.addSubview(stationImageView)
-        stationImageView.height(40)
+        stationImageView.height(60)
         stationImageView.topToSuperview()
         stationImageView.leftToSuperview()
         stationImageView.rightToSuperview()
+        
+        contentView.addSubview(heartButton)
+        heartButton.height(28)
+        heartButton.width(28)
+        heartButton.topToSuperview()
+        heartButton.rightToSuperview()
 
         contentView.addSubview(titleLabel)
         titleLabel.topToBottom(of: stationImageView, offset: 4)
-        titleLabel.bottomToSuperview(offset: -4)
+        titleLabel.bottomToSuperview(offset: -8)
         titleLabel.leftToSuperview(offset: 4)
         titleLabel.rightToSuperview(offset: -4)
+    }
+    
+    //MARK: - Actions
+    @objc func heartAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        
     }
 }

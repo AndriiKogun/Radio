@@ -16,6 +16,7 @@ protocol NetworkServiceProtocol {
     func loadStations(genre: GenreType, page: Int, completion: @escaping (Result <[Station], String> ) -> Void)
     func getCurrentTrack(stationID: String, completion: @escaping (Result <Track, String>) -> Void)
 
+    func loadAllStations(page: Int)
 
 }
 
@@ -25,38 +26,31 @@ enum Result<T, U> {
     case noConnection
 }
 
-enum GenreType: Int, CaseIterable {
-    case pop = 0
-    case rock
-    case oldies
-    case style
-    case dance
-    case lounge
-    case jazz
-    
-    var name: String {
-        switch self {
-        case .pop: return "pop"
-        case .rock: return "rock"
-        case .oldies: return "oldies"
-        case .style: return "style"
-        case .dance: return "dance"
-        case .lounge: return "lounge"
-        case .jazz: return "jazz"
-        }
-    }
-}
-
 class NetworkService: NetworkServiceProtocol {
         
     private let baseUrl = "https://onlineradiobox.com"
     private let country = "ua"
     
     private let serverError = "Щось пішло не так"
-        
+    
+    var currentPage = 0
+    var stationsCount: Int?
+    
     func loadStations(genre: GenreType, page: Int, completion: @escaping (Result <[Station], String>) -> Void) {
-        let urlString = "\(baseUrl)/\(country)/genre/\(genre.name)-/?cs=ua.hop&p=\(page)&ajax=1&tzLoc=Europe/Kiev"
-        
+        guard page <= 11 else { return }
+        let urlString: String
+        if genre == .all {
+            if page == 0 {
+                urlString = "\(baseUrl)/\(country)/?cs=ua.hit.fm&ajax=1&tzLoc=Europe/Kiev"
+
+            } else {
+                urlString = "\(baseUrl)/\(country)/?cs=ua.hit.fm&p=\(page)&ajax=1&tzLoc=Europe/Kiev"
+
+            }
+        } else {
+            urlString = "\(baseUrl)/\(country)/genre/\(genre.name)-/?cs=ua.hit.fm&p=\(page)&ajax=1&tzLoc=Europe/Kiev"
+        }
+         
         AF.request(urlString,
                    method: .get,
                    encoding: JSONEncoding.default).responseJSON { [weak self] response in
@@ -69,12 +63,60 @@ class NetworkService: NetworkServiceProtocol {
                 return completion(.error(self?.serverError ?? ""))
             }
             
-            let stations = HTMLParser.getStetions(html: model.data)
-            
-//            self.saveCookies(response: response.response)
+            let stations = HTMLParser.shared.getStetions(html: model.data)
             completion(.success(stations))
         }
     }
+    
+    func loadAllStations(page: Int) {
+        let urlString: String
+            if page == 0 {
+                urlString = "\(baseUrl)/\(country)/?cs=ua.hit.fm&ajax=1&tzLoc=Europe/Kiev"
+
+            } else {
+                urlString = "\(baseUrl)/\(country)/?cs=ua.hit.fm&p=\(page)&ajax=1&tzLoc=Europe/Kiev"
+
+            }
+        
+//        var urlString = "https://onlineradiobox.com/ua/?cs=jp.moonmission&p=1&ajax=1&tzLoc=Europe/Kiev"
+         
+        AF.request(urlString,
+                   method: .get,
+                   encoding: JSONEncoding.default).responseJSON { [weak self] response in
+            
+            guard
+                let self = self,
+                let data = response.data,
+                let model = try? JSONDecoder().decode(DataModel.self, from: data)
+            else {
+                return
+            }
+            
+            DispatchQueue.main.async(execute: {
+                if self.stationsCount == nil {
+                    self.stationsCount = HTMLParser.shared.numberOfPages(html: model.data)
+                }
+                
+                
+                let stations = HTMLParser.shared.getStetions(html: model.data)
+
+                
+                self.currentPage += 1
+                
+                if let stationsCount = self.stationsCount, self.currentPage > stationsCount {
+                    HTMLParser.shared.save()
+                    HTMLParser.shared.saveToData()
+
+                } else {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                        self.loadAllStations(page: self.currentPage)
+                        print("---------------- gte request for next page")
+                    }
+                }
+            })
+        }
+    }
+
     
     func getCurrentTrack(stationID: String, completion: @escaping (Result <Track, String>) -> Void) {
         let urlString = "https://scraper2.onlineradiobox.com/\(stationID)?l=0"

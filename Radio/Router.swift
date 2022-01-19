@@ -35,7 +35,7 @@ class Router: RouterProtocol {
         let nc = UINavigationController()
         nc.viewControllers = [vc]
         nc.modalPresentationStyle = .overFullScreen
-        navigationController?.present(nc, animated: true, completion: nil)
+        navigationController?.present(CountryListController(), animated: true, completion: nil)
     }
     
     func showLogin(animated: Bool) {

@@ -9,10 +9,12 @@ import Foundation
 import SwiftSoup
 
 class HTMLParser {
+    
+    static let shared = HTMLParser()
+    var stations = [Station]()
+    
+    func getStetions(html: String) -> [Station] {
         
-    static func getStetions(html: String) -> [Station] {
-        var stations = [Station]()
-
         do {
             let doc: Document = try SwiftSoup.parse(html)
             let list = try doc.select("[class~=(?i)b-play station_play]")
@@ -35,7 +37,7 @@ class HTMLParser {
                         
                         let key = "\"\(String(text[substringKeyRange]))\""
                         let value = try Entities.unescape(String(text[substringValueRange]))
-
+                        
                         resultString.append(key + ":" + value)
                     }
                 }
@@ -46,18 +48,129 @@ class HTMLParser {
                 guard
                     let data = jsonString.data(using: .utf8),
                     let station = try? JSONDecoder().decode(Station.self, from: data)
-
                 else { return }
                 
-                
-                stations.append(station)
+                if stations.filter({ $0.id == station.id }).isEmpty {
+                    stations.append(station)
+                } else {
+//                    print(station.id)
+                }
             }
+            
+            print("--------------- added \(stations.count) ")
+
+            
         } catch Exception.Error(_, let message) {
             print(message)
         } catch {
             print("error")
         }
-        print(stations)
         return stations
     }
+    
+    func numberOfPages(html: String) -> Int {
+        var numberOfPages = 0
+        do {
+            let doc: Document = try SwiftSoup.parse(html)
+            let pagination = try doc.select("[class~=(?i)pagination]")
+            if let description = pagination.first()?.description {
+                let doc: Document = try SwiftSoup.parse(description)
+                let links: Elements = try doc.select("a[href]") // a with href
+                
+                let text = links.array().description
+                let regex = try NSRegularExpression(pattern: "(\\;p=(.*?)\\&)", options: [.caseInsensitive])
+                var matches  = regex.matches(in: text, options: [], range: NSMakeRange(0, text.count))
+                
+//                let pageCount = matches.sort(by: > ).last()
+                
+                
+                let p = Pattern.compile("(\\;p=(.*?)[0-9]+)")
+                let m: Matcher = p.matcher(in: text)
+//
+                
+                while( m.find() )
+                {
+                    let group = m.group()
+                    let value = group?.components(separatedBy: "=").last ?? ""
+                    
+                    if let count = Int(value), count > numberOfPages {
+                        numberOfPages = count
+                    }
+                }
+
+                
+//                let aaa = m.group()
+                
+                print("--------------try get pages count \(numberOfPages)")
+                
+                return numberOfPages
+            }
+        } catch {
+            
+        }
+        return 0
+    }
+    
+    func save() {
+        print("--------------try save to JSON")
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let pathWithFileName = documentDirectory.appendingPathComponent("myJsonString.json")
+        do {
+            let jsonData = try JSONEncoder().encode(stations)
+            let jsonString = String(data: jsonData, encoding: .utf8)
+            
+            try jsonString?.write(to: pathWithFileName,
+                                  atomically: true,
+                                  encoding: .utf8)
+        } catch {
+            // Handle error
+        }
+    }
+    
+    func saveToData() {
+        print("--------------try save to DATA")
+        
+        if let documentDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                               in: .userDomainMask).first {
+            let pathWithFileName = documentDirectory.appendingPathComponent("myJsonData")
+            do {
+                let jsonData = try JSONEncoder().encode(stations)
+                let compressedData = try (jsonData as NSData).compressed(using: .lzfse)
+
+                try compressedData.write(to: pathWithFileName)
+            } catch {
+                // handle error
+            }
+        }
+    }
+    
+    func readFromFile() -> [Station] {
+        guard let pathWithFileName = Bundle.main.path(forResource: "myJsonString", ofType: "json") else { return [] }
+        //         let pathWithFileName = try? String(contentsOfFile: path, encoding: .utf8)
+        //
+        //         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return [] }
+        //         let pathWithFileName = documentDirectory.appendingPathComponent("myJsonString.json")
+        do {
+            guard let data = try String(contentsOfFile: pathWithFileName).data(using: .utf8) else { return [] }
+            let stations = try JSONDecoder().decode([Station].self, from: data)
+            return stations
+        } catch {
+            print(error)
+            return []
+        }
+    }
+    
+    func parse(jsonData: Data) {
+        do {
+            let decodedData = try JSONDecoder().decode([Station].self,
+                                                       from: jsonData)
+            
+            print(decodedData.description)
+            print("===================================")
+        } catch {
+            print("decode error")
+        }
+    }
 }
+
+

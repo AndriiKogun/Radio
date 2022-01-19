@@ -13,7 +13,7 @@ class GenreCell: UICollectionViewCell {
         let view = UILabel()
         view.numberOfLines = 1
         view.font = .systemFont(ofSize: 14)
-        view.textColor = .black
+        view.textColor = .white
         view.textAlignment = .center
         return view
     }()
@@ -24,7 +24,7 @@ class GenreCell: UICollectionViewCell {
         
         contentView.layer.cornerRadius = 16
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.borderColor = UIColor.white.cgColor
     }
     
     required init?(coder aDecoder: NSCoder) {

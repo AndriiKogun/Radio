@@ -1,41 +1,42 @@
 //
-//  MainController.swift
+//  CountryListController.swift
 //  Radio
 //
-//  Created by Andrii on 16.12.2021.
+//  Created by Andrii on 19.01.2022.
 //
 
-import UIKit
-import AlamofireImage
+import Foundation
+import FlagKit
 
-protocol MainControllerProtocol: AnyObject {
-    func reloadData()
-    func showPlayer(track: Track)
-    func updateMiniPlayer(station: Station)
+//protocol MainControllerProtocol: AnyObject {
+//    func reloadData()
+//    func showPlayer(track: Track)
+//    func updateMiniPlayer(station: Station)
+//
+//}
 
-}
-
-class MainController: BaseViewController {
+class CountryListController: BaseViewController {
     
     var presenter: MainPresenter!
     var view1: UIView!
-    
-    lazy var player: AudioPlayer = {
-        let view = AudioPlayer(view: view)
-        view.delegate = self
-        return view
-    }()
-
-    private lazy var miniPlayerView: MiniPlayerView = {
-        let view = MiniPlayerView()
-        view.isHidden = true
-        view.delegate = self
-        return view
-    }()
-   
+       
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            return self.presenter.sections[sectionIndex].sectionLayout()
+            let spacing: CGFloat = 10
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                  heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .absolute(110))
+            
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
+            group.interItemSpacing = .fixed(spacing)
+            
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = .init(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
+            section.interGroupSpacing = spacing
+            return section
         }
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -52,7 +53,7 @@ class MainController: BaseViewController {
         super.viewDidLoad()
         
         setupLayout()
-        presenter.loadStations(genre: .rock, page: 0)
+//        presenter.loadStations(genre: .rock, page: 0)
         
 //        view1 = UIView()
 //        view1.backgroundColor = .red
@@ -78,12 +79,6 @@ class MainController: BaseViewController {
         collectionView.bottomToSuperview()
         collectionView.leftToSuperview()
         collectionView.rightToSuperview()
-        
-        view.addSubview(miniPlayerView)
-        miniPlayerView.height(90)
-        miniPlayerView.bottomToSuperview()
-        miniPlayerView.leftToSuperview()
-        miniPlayerView.rightToSuperview()
     }
     
     override func transition(from fromViewController: UIViewController, to toViewController: UIViewController, duration: TimeInterval, options: UIView.AnimationOptions = [], animations: (() -> Void)?, completion: ((Bool) -> Void)? = nil) {
@@ -93,33 +88,31 @@ class MainController: BaseViewController {
 
 }
 
-extension MainController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension CountryListController: UICollectionViewDataSource, UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return presenter.sections.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.sections[section].numberOfItems()
+        return  10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {
-            let genre = GenreType.allCases[indexPath.row]
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenreCell.reuseIdentifier, for: indexPath) as! GenreCell
-            cell.titleLabel.text = genre.name
-            return cell
-        } else {
-            let station = presenter.stations[indexPath.row]
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StationCell.reuseIdentifier, for: indexPath) as! StationCell
-            if let url = URL(string: station.imageUrl) {
-                cell.stationImageView.af.setImage(withURL: url)
-            }
+            
+            let countryCode = Locale.current.regionCode!
+            let flag = Flag(countryCode: "AT")!
+
+            // Retrieve the unstyled image for customized use
+            let originalImage = flag.originalImage
+
+            // Or retrieve a styled flag
+            let styledImage = flag.image(style: .circle)
+            
+            cell.stationImageView.image = originalImage
             cell.stationImageView.contentMode = .scaleAspectFill
             cell.stationImageView.backgroundColor = .black
-            cell.titleLabel.text = station.name
             return cell
-            
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -144,57 +137,57 @@ extension MainController: UICollectionViewDataSource, UICollectionViewDelegate {
         presenter.getCurrentTrack(stationID: station.id)
     }
 }
-
-extension MainController: MiniPlayerViewDelegate {
-    func play() {
-        player.player.play()
-    }
-    func pause() {
-        player.player.pause()
-
-    }
-    func share() {
-        
-    }
-    func showPlayer(station: Station) {
-        let vc = ViewController(station: station)
-     
-        vc.modalPresentationStyle = .overCurrentContext // Disables that black background swift enables by default when presenting a view controller
-
-        present(vc, animated: true, completion: nil)
-    }
-}
-
-
-extension MainController: MainControllerProtocol {
-    func reloadData() {
-        collectionView.reloadData()
-    }
-    
-    func updateMiniPlayer(station: Station) {
-        miniPlayerView.isHidden = false
-        miniPlayerView.setup(station: station)
-        miniPlayerView.setup(state: .playing)
-        player.play(station: station)
-    }
-    
-    func showPlayer(track: Track) {
-//        let vc = ViewController(track: track)
-//        view1.willMove(toSuperview: vc.view)
-//        view1.didMoveToSuperview()
+//
+//extension MainController: MiniPlayerViewDelegate {
+//    func play() {
+//        player.player.play()
+//    }
+//    func pause() {
+//        player.player.pause()
+//
+//    }
+//    func share() {
+//
+//    }
+//    func showPlayer(station: Station) {
+//        let vc = ViewController(station: station)
+//
 //        vc.modalPresentationStyle = .overCurrentContext // Disables that black background swift enables by default when presenting a view controller
 //
 //        present(vc, animated: true, completion: nil)
-    }
-
-}
-
-extension MainController: AudioPlayerDelegate {
-    func audioStream(isLoading: Bool) {
-        
-    }
-    func playerDidChange(state: AudioPlayerState) {
-        miniPlayerView.setup(state: state)
-
-    }
-}
+//    }
+//}
+//
+//
+//extension MainController: MainControllerProtocol {
+//    func reloadData() {
+//        collectionView.reloadData()
+//    }
+//
+//    func updateMiniPlayer(station: Station) {
+//        miniPlayerView.isHidden = false
+//        miniPlayerView.setup(station: station)
+//        miniPlayerView.setup(state: .playing)
+//        player.play(station: station)
+//    }
+//
+//    func showPlayer(track: Track) {
+////        let vc = ViewController(track: track)
+////        view1.willMove(toSuperview: vc.view)
+////        view1.didMoveToSuperview()
+////        vc.modalPresentationStyle = .overCurrentContext // Disables that black background swift enables by default when presenting a view controller
+////
+////        present(vc, animated: true, completion: nil)
+//    }
+//
+//}
+//
+//extension MainController: AudioPlayerDelegate {
+//    func audioStream(isLoading: Bool) {
+//
+//    }
+//    func playerDidChange(state: AudioPlayerState) {
+//        miniPlayerView.setup(state: state)
+//
+//    }
+//}
