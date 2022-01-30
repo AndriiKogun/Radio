@@ -7,21 +7,22 @@
 
 import Foundation
 
-struct StationsModel {
-    var stations = [Station]()
+//struct StationsModel {
+//    var stations = [Station]()
 //    var genre = GenreType.
-    
-    
-    var pagesCount: Int
-}
+//    
+//    
+//    var pagesCount: Int
+//}
 
 struct Station: Codable {
     var id: String
     var radioimg: String
     var name: String
     var stream: String
-    
     var currentTrack: Track?
+    var genres = [String]()
+    var countryCode = ""
     
     var imageUrl: String {
         return  "https:\(radioimg)"

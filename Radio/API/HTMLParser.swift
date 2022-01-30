@@ -12,14 +12,20 @@ class HTMLParser {
     
     static let shared = HTMLParser()
     var stations = [Station]()
-    
+    var countryCode = ""
+
     func getStetions(html: String) -> [Station] {
         
         do {
             let doc: Document = try SwiftSoup.parse(html)
             let list = try doc.select("[class~=(?i)b-play station_play]")
-            
-            try list.forEach { item in
+            let genres = try doc.select("[class~=(?i)stations__station__tags")
+
+            try list.enumerated().forEach { (index, item) in
+                if index >= 25 {
+                    return
+                }
+                    
                 let text = try Entities.unescape(item.description)
                 let regex = try NSRegularExpression(pattern: "([^ =,]*)=(\"[^\"]*\"|[^,\"]*)", options: [.caseInsensitive])
                 let matches  = regex.matches(in: text, options: [], range: NSMakeRange(0, text.count))
@@ -47,17 +53,52 @@ class HTMLParser {
                 
                 guard
                     let data = jsonString.data(using: .utf8),
-                    let station = try? JSONDecoder().decode(Station.self, from: data)
+                    var station = try? JSONDecoder().decode(Station.self, from: data)
                 else { return }
-                
+                                                
                 if stations.filter({ $0.id == station.id }).isEmpty {
+                    if index < genres.count {
+                        let genreItem = genres[index]
+                        let text = try Entities.unescape(genreItem.description)
+                        var genresString = [String]()
+
+                        let p = Pattern.compile("(\"ajax\">(.*?)\\<)")
+                        let m: Matcher = p.matcher(in: text)
+
+                        while( m.find() ) {
+                            if let group = m.group(2) {
+                                let value = try Entities.unescape(group)
+                                genresString.append(value)
+                            }
+                        }
+                        station.genres = genresString
+                        
+                        if countryCode.isEmpty {
+                            let p = Pattern.compile("(\"\\/(.*?)\\/)")
+                            let m: Matcher = p.matcher(in: text)
+
+                            while( m.find() ) {
+                                if let group = m.group(2) {
+                                    countryCode = group
+                                    
+                                    print(group)
+                                }
+                            }
+                        }
+                        station.countryCode = countryCode
+                    }
+                    
                     stations.append(station)
                 } else {
 //                    print(station.id)
                 }
             }
+    
             
             print("--------------- added \(stations.count) ")
+            stations.forEach { station in
+                print("\(station)\n")
+            }
 
             
         } catch Exception.Error(_, let message) {
@@ -78,18 +119,11 @@ class HTMLParser {
                 let links: Elements = try doc.select("a[href]") // a with href
                 
                 let text = links.array().description
-                let regex = try NSRegularExpression(pattern: "(\\;p=(.*?)\\&)", options: [.caseInsensitive])
-                var matches  = regex.matches(in: text, options: [], range: NSMakeRange(0, text.count))
-                
-//                let pageCount = matches.sort(by: > ).last()
-                
-                
+                                
                 let p = Pattern.compile("(\\;p=(.*?)[0-9]+)")
                 let m: Matcher = p.matcher(in: text)
-//
                 
-                while( m.find() )
-                {
+                while( m.find() ) {
                     let group = m.group()
                     let value = group?.components(separatedBy: "=").last ?? ""
                     
@@ -97,9 +131,6 @@ class HTMLParser {
                         numberOfPages = count
                     }
                 }
-
-                
-//                let aaa = m.group()
                 
                 print("--------------try get pages count \(numberOfPages)")
                 

@@ -39,17 +39,19 @@ class NetworkService: NetworkServiceProtocol {
     func loadStations(genre: GenreType, page: Int, completion: @escaping (Result <[Station], String>) -> Void) {
         guard page <= 11 else { return }
         let urlString: String
-        if genre == .all {
-            if page == 0 {
-                urlString = "\(baseUrl)/\(country)/?cs=ua.hit.fm&ajax=1&tzLoc=Europe/Kiev"
-
-            } else {
-                urlString = "\(baseUrl)/\(country)/?cs=ua.hit.fm&p=\(page)&ajax=1&tzLoc=Europe/Kiev"
-
-            }
-        } else {
-            urlString = "\(baseUrl)/\(country)/genre/\(genre.name)-/?cs=ua.hit.fm&p=\(page)&ajax=1&tzLoc=Europe/Kiev"
-        }
+//        if genre == .all {
+//            if page == 0 {
+//                urlString = "\(baseUrl)/\(country)/?cs=ua.hit.fm&ajax=1&tzLoc=Europe/Kiev"
+//
+//            } else {
+//                urlString = "\(baseUrl)/\(country)/?cs=ua.hit.fm&p=\(page)&ajax=1&tzLoc=Europe/Kiev"
+//
+//            }
+//        } else {
+//            urlString = "\(baseUrl)/\(country)/genre/\(genre.name)-/?cs=ua.hit.fm&p=\(page)&ajax=1&tzLoc=Europe/Kiev"
+//        }
+        
+        urlString = "https://onlineradiobox.com/pl/?cs=ua.radio.roks&p=0&tzLoc=Europe/Kiev&ajax=1&tzLoc=Europe/Kiev"
          
         AF.request(urlString,
                    method: .get,

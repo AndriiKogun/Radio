@@ -104,9 +104,9 @@ extension MainController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let genre = GenreType.allCases[indexPath.row]
+//            let genre = GenreType.allCases[indexPath.row]
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenreCell.reuseIdentifier, for: indexPath) as! GenreCell
-            cell.titleLabel.text = genre.name
+//            cell.titleLabel.text = genre.name
             return cell
         } else {
             let station = presenter.stations[indexPath.row]

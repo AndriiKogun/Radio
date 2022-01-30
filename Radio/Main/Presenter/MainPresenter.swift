@@ -34,32 +34,37 @@ class MainPresenter: MainPresenterProtocol {
     var data = ""
 
     func loadStations(genre: GenreType, page: Int) {
-        networkService.loadAllStations(page: 0)
+//        networkService.loadAllStations(page: 0)
+//        
+////        stations = HTMLParser.shared.readFromFile()
+//
+//        sections = [
+//            MainGenreSectionModel(),
+//            MainStationsSectionModel(stations: stations)
+//        ]
+//        
+//        
+//        view?.reloadData()
         
-//        stations = HTMLParser.shared.readFromFile()
+        networkService.loadStations(genre: genre, page: page) { [weak self] result in
+            guard let self = self else { return }
 
-        sections = [
-            MainGenreSectionModel(),
-            MainStationsSectionModel(stations: stations)
-        ]
-        
-        
-        view?.reloadData()
-        
-//        networkService.loadStations(genre: genre, page: page) { [weak self] result in
-//            guard let self = self else { return }
-//
-//            switch result {
-//            case .success(let stations):
-//                self.stations.append(contentsOf: stations)
-//                self.view?.reloadData()
-//
-//
-//
-//            default:
-//                break
-//            }
-//        }
+            switch result {
+            case .success(let stations):
+                self.stations.append(contentsOf: stations)
+                
+                self.sections = [
+                            MainGenreSectionModel(),
+                            MainStationsSectionModel(stations: stations)
+                        ]
+                self.view?.reloadData()
+
+
+
+            default:
+                break
+            }
+        }
     }
     
     func getCurrentTrack(stationID: String) {
