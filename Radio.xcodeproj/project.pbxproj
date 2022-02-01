@@ -8,23 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		768F8A7523418679C2902138 /* Pods_Radio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 937689B763EE9EE66ACDACEA /* Pods_Radio.framework */; };
-		B5625174278871AA004306A0 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = B5625173278871AA004306A0 /* data.json */; };
+		B504740427A8C60400A2455A /* al in Resources */ = {isa = PBXBuildFile; fileRef = B504740327A8C60400A2455A /* al */; };
+		B504740627A8C61E00A2455A /* ee in Resources */ = {isa = PBXBuildFile; fileRef = B504740527A8C61E00A2455A /* ee */; };
+		B561D62927A769B2001FEE8D /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561D62827A769B2001FEE8D /* Country.swift */; };
 		B57938102797B118005D673A /* CountryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579380F2797B118005D673A /* CountryListController.swift */; };
 		B57CC3DC277A7EAB00F31AA0 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57CC3DB277A7EAB00F31AA0 /* Track.swift */; };
+		B5809FBB27A6FDF500E85F92 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5809FBA27A6FDF500E85F92 /* UIDevice+Extension.swift */; };
 		B5820120278A107900B1C0A6 /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B582011F278A107900B1C0A6 /* MiniPlayerView.swift */; };
 		B5820122278A237800B1C0A6 /* MainSectionBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5820121278A237800B1C0A6 /* MainSectionBaseModel.swift */; };
 		B5820124278A25D300B1C0A6 /* MainGenreSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5820123278A25D300B1C0A6 /* MainGenreSectionModel.swift */; };
 		B5820126278A25F100B1C0A6 /* MainStationsSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5820125278A25F100B1C0A6 /* MainStationsSectionModel.swift */; };
 		B5820128278A2E9800B1C0A6 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5820127278A2E9800B1C0A6 /* AudioPlayer.swift */; };
-		B582012A278A611500B1C0A6 /* myJsonString.json in Resources */ = {isa = PBXBuildFile; fileRef = B5820129278A611500B1C0A6 /* myJsonString.json */; };
 		B584140F276AA96200235259 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B584140E276AA96200235259 /* MenuController.swift */; };
 		B5841412276AAA5900235259 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5841411276AAA5900235259 /* BaseViewController.swift */; };
 		B5841414276AAB6600235259 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5841413276AAB6600235259 /* MainController.swift */; };
-		B584141A276ABC7900235259 /* StationsList.html in Resources */ = {isa = PBXBuildFile; fileRef = B5841419276ABC7900235259 /* StationsList.html */; };
 		B587C3FB27680317000D2B75 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C3FA27680317000D2B75 /* Builder.swift */; };
 		B587C3FD27680372000D2B75 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C3FC27680372000D2B75 /* Router.swift */; };
 		B587C40027680435000D2B75 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C3FF27680435000D2B75 /* NetworkService.swift */; };
-		B587C4042768051A000D2B75 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C4032768051A000D2B75 /* LoginModel.swift */; };
 		B587C40627680541000D2B75 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587C40527680541000D2B75 /* Station.swift */; };
 		B59434B3277937F700487276 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59434B2277937F700487276 /* DataModel.swift */; };
 		B59434B5277938E400487276 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59434B4277938E400487276 /* HTMLParser.swift */; };
@@ -65,23 +65,23 @@
 /* Begin PBXFileReference section */
 		0FA99BDD349B373CC2329DB0 /* Pods-Radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Radio.debug.xcconfig"; path = "Target Support Files/Pods-Radio/Pods-Radio.debug.xcconfig"; sourceTree = "<group>"; };
 		937689B763EE9EE66ACDACEA /* Pods_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5625173278871AA004306A0 /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		B504740327A8C60400A2455A /* al */ = {isa = PBXFileReference; lastKnownFileType = file; path = al; sourceTree = "<group>"; };
+		B504740527A8C61E00A2455A /* ee */ = {isa = PBXFileReference; lastKnownFileType = file; path = ee; sourceTree = "<group>"; };
+		B561D62827A769B2001FEE8D /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		B579380F2797B118005D673A /* CountryListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListController.swift; sourceTree = "<group>"; };
 		B57CC3DB277A7EAB00F31AA0 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		B5809FBA27A6FDF500E85F92 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		B582011F278A107900B1C0A6 /* MiniPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
 		B5820121278A237800B1C0A6 /* MainSectionBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionBaseModel.swift; sourceTree = "<group>"; };
 		B5820123278A25D300B1C0A6 /* MainGenreSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGenreSectionModel.swift; sourceTree = "<group>"; };
 		B5820125278A25F100B1C0A6 /* MainStationsSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStationsSectionModel.swift; sourceTree = "<group>"; };
 		B5820127278A2E9800B1C0A6 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		B5820129278A611500B1C0A6 /* myJsonString.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = myJsonString.json; sourceTree = "<group>"; };
 		B584140E276AA96200235259 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		B5841411276AAA5900235259 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B5841413276AAB6600235259 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
-		B5841419276ABC7900235259 /* StationsList.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = StationsList.html; sourceTree = "<group>"; };
 		B587C3FA27680317000D2B75 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		B587C3FC27680372000D2B75 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		B587C3FF27680435000D2B75 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		B587C4032768051A000D2B75 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		B587C40527680541000D2B75 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		B59434B2277937F700487276 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		B59434B4277938E400487276 /* HTMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
@@ -189,6 +189,7 @@
 				B5DBF32327681EE600AB06BD /* NSObject+Extension.swift */,
 				B5DBF32527681EFC00AB06BD /* UIColor+Extension.swift */,
 				B5DBF32627681EFC00AB06BD /* UIView+Extension.swift */,
+				B5809FBA27A6FDF500E85F92 /* UIDevice+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -220,9 +221,8 @@
 		B5841418276ABC5500235259 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				B5820129278A611500B1C0A6 /* myJsonString.json */,
-				B5841419276ABC7900235259 /* StationsList.html */,
-				B5625173278871AA004306A0 /* data.json */,
+				B504740327A8C60400A2455A /* al */,
+				B504740527A8C61E00A2455A /* ee */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -254,10 +254,10 @@
 		B587C402276804B1000D2B75 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B587C4032768051A000D2B75 /* LoginModel.swift */,
 				B587C40527680541000D2B75 /* Station.swift */,
 				B57CC3DB277A7EAB00F31AA0 /* Track.swift */,
 				B59434B2277937F700487276 /* DataModel.swift */,
+				B561D62827A769B2001FEE8D /* Country.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -431,12 +431,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B504740627A8C61E00A2455A /* ee in Resources */,
 				B5CEF6C827661CFB002C6EB7 /* LaunchScreen.storyboard in Resources */,
-				B584141A276ABC7900235259 /* StationsList.html in Resources */,
 				B5CEF6C527661CFB002C6EB7 /* Assets.xcassets in Resources */,
-				B5625174278871AA004306A0 /* data.json in Resources */,
-				B582012A278A611500B1C0A6 /* myJsonString.json in Resources */,
 				B5CEF6C327661CF7002C6EB7 /* Main.storyboard in Resources */,
+				B504740427A8C60400A2455A /* al in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B561D62927A769B2001FEE8D /* Country.swift in Sources */,
 				B5841412276AAA5900235259 /* BaseViewController.swift in Sources */,
 				B59AB2E0278500250008190A /* StationCell.swift in Sources */,
 				B5DBF32827681EFC00AB06BD /* UIView+Extension.swift in Sources */,
@@ -517,7 +517,6 @@
 				B584140F276AA96200235259 /* MenuController.swift in Sources */,
 				B57938102797B118005D673A /* CountryListController.swift in Sources */,
 				B5820128278A2E9800B1C0A6 /* AudioPlayer.swift in Sources */,
-				B587C4042768051A000D2B75 /* LoginModel.swift in Sources */,
 				B5CEF6BC27661CF7002C6EB7 /* AppDelegate.swift in Sources */,
 				B5820124278A25D300B1C0A6 /* MainGenreSectionModel.swift in Sources */,
 				B5820122278A237800B1C0A6 /* MainSectionBaseModel.swift in Sources */,
@@ -525,6 +524,7 @@
 				B587C3FD27680372000D2B75 /* Router.swift in Sources */,
 				B5CEF6BE27661CF7002C6EB7 /* SceneDelegate.swift in Sources */,
 				B587C40027680435000D2B75 /* NetworkService.swift in Sources */,
+				B5809FBB27A6FDF500E85F92 /* UIDevice+Extension.swift in Sources */,
 				B59434B5277938E400487276 /* HTMLParser.swift in Sources */,
 				B587C3FB27680317000D2B75 /* Builder.swift in Sources */,
 				B5DBF32727681EFC00AB06BD /* UIColor+Extension.swift in Sources */,
@@ -706,6 +706,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C24TZYQTQV;
@@ -724,6 +725,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ak.Radio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -736,6 +738,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C24TZYQTQV;
@@ -754,6 +757,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ak.Radio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

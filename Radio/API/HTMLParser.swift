@@ -13,6 +13,7 @@ class HTMLParser {
     static let shared = HTMLParser()
     var stations = [Station]()
     var countryCode = ""
+    
 
     func getStetions(html: String) -> [Station] {
         
@@ -86,6 +87,7 @@ class HTMLParser {
                             }
                         }
                         station.countryCode = countryCode
+                        station.renownOrder = stations.count
                     }
                     
                     stations.append(station)
@@ -96,9 +98,9 @@ class HTMLParser {
     
             
             print("--------------- added \(stations.count) ")
-            stations.forEach { station in
-                print("\(station)\n")
-            }
+//            stations.forEach { station in
+//                print("\(station)\n")
+//            }
 
             
         } catch Exception.Error(_, let message) {
@@ -142,10 +144,46 @@ class HTMLParser {
         return 0
     }
     
-    func save() {
+    
+    func getCountries(html: String) {
+        do {
+            let doc: Document = try SwiftSoup.parse(html)
+            let countries = try doc.select("[class~=(?i)countries__countries-list tab-pane fade in active]")
+            if let description = countries.first()?.description {
+                let text = try Entities.unescape(description)
+
+                let p = Pattern.compile("((\"\\/(.*?)\\/).*?\">(.*?)<)")
+                let m: Matcher = p.matcher(in: text)
+
+                var array = [[String: String]]()
+                
+                while( m.find() ) {
+                    if let code = m.group(3), let name = m.group(4) {
+                        array.append(["code": code, "name": name])
+                    }
+                }
+                
+                let data = try JSONSerialization.data(withJSONObject: array, options: [])
+                let countries = try JSONDecoder().decode([Country].self, from: data)
+                
+                
+                
+                
+                print("-------------- countries \(countries)")
+            }
+                
+        } catch {
+            
+        }
+    }
+    
+    
+    func saveToTetFile() {
         print("--------------try save to JSON")
+        let countryCode = stations.first?.countryCode ?? "Error"
+
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let pathWithFileName = documentDirectory.appendingPathComponent("myJsonString.json")
+        let pathWithFileName = documentDirectory.appendingPathComponent("\(countryCode).json")
         do {
             let jsonData = try JSONEncoder().encode(stations)
             let jsonString = String(data: jsonData, encoding: .utf8)
@@ -160,22 +198,22 @@ class HTMLParser {
     
     func saveToData() {
         print("--------------try save to DATA")
-        
+        let countryCode = stations.first?.countryCode ?? "Error"
         if let documentDirectory = FileManager.default.urls(for: .documentDirectory,
                                                                in: .userDomainMask).first {
-            let pathWithFileName = documentDirectory.appendingPathComponent("myJsonData")
+            let pathWithFileName = documentDirectory.appendingPathComponent(countryCode)
             do {
                 let jsonData = try JSONEncoder().encode(stations)
                 let compressedData = try (jsonData as NSData).compressed(using: .lzfse)
-
                 try compressedData.write(to: pathWithFileName)
+
             } catch {
                 // handle error
             }
         }
     }
     
-    func readFromFile() -> [Station] {
+    func readFromJSONFile() -> [Station] {
         guard let pathWithFileName = Bundle.main.path(forResource: "myJsonString", ofType: "json") else { return [] }
         //         let pathWithFileName = try? String(contentsOfFile: path, encoding: .utf8)
         //
@@ -185,6 +223,44 @@ class HTMLParser {
             guard let data = try String(contentsOfFile: pathWithFileName).data(using: .utf8) else { return [] }
             let stations = try JSONDecoder().decode([Station].self, from: data)
             return stations
+        } catch {
+            print(error)
+            return []
+        }
+    }
+    
+    func readFromDataFile() -> [Station] {
+        guard let pathWithFileName1 = Bundle.main.path(forResource: "al", ofType: nil) else { return [] }
+        let url1 = URL(fileURLWithPath: pathWithFileName1)
+        
+        guard let pathWithFileName2 = Bundle.main.path(forResource: "ee", ofType: nil) else { return [] }
+        let url2 = URL(fileURLWithPath: pathWithFileName2)
+
+        
+//        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("myJsonData")
+
+        do {
+            let jsonData1 = try Data(contentsOf: url1, options: [])
+            let jsonData2 = try Data(contentsOf: url2, options: [])
+            
+            var data = Data()
+            data.append(jsonData1)
+            data.append(jsonData2)
+
+            let decompressedData1 = try (jsonData1 as NSData).decompressed(using: .lzfse)
+            let decompressedData2 = try (jsonData2 as NSData).decompressed(using: .lzfse)
+
+            let stations1 = try JSONDecoder().decode([Station].self, from: decompressedData1 as Data)
+            let stations2 = try JSONDecoder().decode([Station].self, from: decompressedData2 as Data)
+
+//            let stations1 = stations.filter({ $0.countryCode == "al"})
+//            let stations2 = stations.filter({ $0.countryCode == "ee"})
+
+            var array = [Station]()
+            array.append(contentsOf: stations1)
+            array.append(contentsOf: stations2)
+
+            return array
         } catch {
             print(error)
             return []

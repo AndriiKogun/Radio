@@ -16,13 +16,15 @@ import Foundation
 //}
 
 struct Station: Codable {
+    
     var id: String
     var radioimg: String
     var name: String
     var stream: String
     var currentTrack: Track?
-    var genres = [String]()
-    var countryCode = ""
+    var genres: [String]?
+    var countryCode: String?
+    var renownOrder: Int?
     
     var imageUrl: String {
         return  "https:\(radioimg)"
@@ -49,6 +51,9 @@ struct Station: Codable {
         case name = "radioname"
         case radioimg
         case stream
+        case genres
+        case countryCode
+        case renownOrder
     }
 }
 

@@ -29,6 +29,14 @@ class AudioPlayer: NSObject {
     
     var station: Station?
     
+    func play() {
+        if player.currentItem?.status == .failed {
+            play(station: station)
+        } else {
+            player.play()
+        }
+    }
+    
     func play(station: Station?) {
         self.station = station
         
@@ -111,6 +119,11 @@ class AudioPlayer: NSObject {
                 case .readyToPlay:
                     print("+++ play")
                     
+                case .failed:
+                    self.delegate?.audioStream(isLoading: false)
+                    
+                    print("--- faild")
+
                 default:
                     break
                 }

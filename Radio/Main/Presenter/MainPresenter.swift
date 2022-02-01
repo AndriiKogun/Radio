@@ -35,36 +35,35 @@ class MainPresenter: MainPresenterProtocol {
 
     func loadStations(genre: GenreType, page: Int) {
 //        networkService.loadAllStations(page: 0)
-//        
-////        stations = HTMLParser.shared.readFromFile()
-//
-//        sections = [
-//            MainGenreSectionModel(),
-//            MainStationsSectionModel(stations: stations)
-//        ]
-//        
-//        
-//        view?.reloadData()
+        stations = HTMLParser.shared.readFromDataFile()
+
+//        networkService.loadCountries(region: "")
+
+        sections = [
+            MainGenreSectionModel(),
+            MainStationsSectionModel(stations: stations)
+        ]
+        view?.reloadData()
         
-        networkService.loadStations(genre: genre, page: page) { [weak self] result in
-            guard let self = self else { return }
-
-            switch result {
-            case .success(let stations):
-                self.stations.append(contentsOf: stations)
-                
-                self.sections = [
-                            MainGenreSectionModel(),
-                            MainStationsSectionModel(stations: stations)
-                        ]
-                self.view?.reloadData()
-
-
-
-            default:
-                break
-            }
-        }
+//        networkService.loadStations(genre: genre, page: page) { [weak self] result in
+//            guard let self = self else { return }
+//
+//            switch result {
+//            case .success(let stations):
+//                self.stations.append(contentsOf: stations)
+//                
+//                self.sections = [
+//                            MainGenreSectionModel(),
+//                            MainStationsSectionModel(stations: stations)
+//                        ]
+//                self.view?.reloadData()
+//
+//
+//
+//            default:
+//                break
+//            }
+//        }
     }
     
     func getCurrentTrack(stationID: String) {

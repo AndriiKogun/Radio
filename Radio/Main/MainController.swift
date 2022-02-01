@@ -80,7 +80,11 @@ class MainController: BaseViewController {
         collectionView.rightToSuperview()
         
         view.addSubview(miniPlayerView)
-        miniPlayerView.height(90)
+        if UIDevice.hasNotch {
+            miniPlayerView.height(90)
+        } else {
+            miniPlayerView.height(60)
+        }
         miniPlayerView.bottomToSuperview()
         miniPlayerView.leftToSuperview()
         miniPlayerView.rightToSuperview()
@@ -147,7 +151,7 @@ extension MainController: UICollectionViewDataSource, UICollectionViewDelegate {
 
 extension MainController: MiniPlayerViewDelegate {
     func play() {
-        player.player.play()
+        player.play()
     }
     func pause() {
         player.player.pause()
@@ -191,8 +195,9 @@ extension MainController: MainControllerProtocol {
 
 extension MainController: AudioPlayerDelegate {
     func audioStream(isLoading: Bool) {
-        
+        miniPlayerView.setup(state: isLoading ? .paused : .playing)
     }
+    
     func playerDidChange(state: AudioPlayerState) {
         miniPlayerView.setup(state: state)
 
